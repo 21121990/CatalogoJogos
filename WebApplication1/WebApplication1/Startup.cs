@@ -1,3 +1,4 @@
+using ExemploApiCatalogoJogos.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.Respositories;
+using WebApplication1.Services;
 
 namespace WebApplication1
 {
@@ -26,6 +29,9 @@ namespace WebApplication1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddScoped<IjogoService, JogoService>();
+            services.AddScoped<IjogoRepository, JogoSqlServerRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
